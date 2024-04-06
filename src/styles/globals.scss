@@ -1,0 +1,48 @@
+@use './_fonts.scss';
+@use './_mixins.scss';
+@use './_variables.scss';
+@use './_responsives.scss';
+
+html {
+  scroll-behavior: smooth !important;
+  overflow-x: hidden;
+
+  @include responsives.VGA {
+    font-size: 14px;
+  }
+}
+
+* {
+  box-sizing: border-box;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  font-smooth: never;
+}
+
+#root {
+  width: 100%;
+  max-width: var(--max-web-width);
+
+  @include responsives.HD {
+    max-width: 100%;
+  }
+}
+
+body {
+  @include mixins.flex_container(column, flex-start, center);
+  font-family: Roboto, sans-serif;
+  background-color: var(--color-alpha);
+  margin: 0;
+
+  @include responsives.VGA {
+    padding: 0;
+  }
+}
+
+h1,
+h2,
+h3,
+h4,
+p {
+  color: var(--color-gamma);
+}

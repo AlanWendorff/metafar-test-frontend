@@ -1,0 +1,12 @@
+@use '@styles/_mixins' as mixins;
+
+.container {
+  @include mixins.flex_container(column, center, center);
+  width: 100%;
+  color: white;
+
+  h1 {
+    font-size: 4rem;
+    text-align: center;
+  }
+}
