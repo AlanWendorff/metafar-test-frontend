@@ -27,4 +27,4 @@ pnpm dev
 bun dev
 ```
 
-Abra http://localhost:3000 con su navegador para ver el resultado.
+Abra http://localhost:5173 con su navegador para ver el resultado.
