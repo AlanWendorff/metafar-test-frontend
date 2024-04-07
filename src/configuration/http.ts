@@ -1,5 +1,9 @@
 import { API_URL } from '@/constants/env';
-import API_HEADERS from '@/configuration/api';
+import { API_KEY } from '@constants/env';
+
+const API_HEADERS = {
+  Authorization: `apikey ${API_KEY}`
+};
 
 const http = {
   get: async (input: RequestInfo, init?: RequestInit) => {
