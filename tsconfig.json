@@ -29,6 +29,7 @@
       "@hooks/*": ["./src/hooks/*"],
       "@types/*": ["./src/types/*"],
       "@styles/*": ["./src/styles/*"],
+      "@configuration/*": ["./src/configuration/*"],
     }
   },
   "include": ["src"],
