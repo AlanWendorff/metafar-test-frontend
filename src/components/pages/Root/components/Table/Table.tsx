@@ -11,19 +11,19 @@ interface ITableProps {
 const columns = [
   {
     name: 'Symbol',
-    selector: (row: { symbol: any }) => row.symbol
+    selector: (row: { symbol: string }) => row.symbol
   },
   {
     name: 'Name',
-    selector: (row: { name: any }) => row.name
+    selector: (row: { name: string }) => row.name
   },
   {
     name: 'Currency',
-    selector: (row: { currency: any }) => row.currency
+    selector: (row: { currency: string }) => row.currency
   },
   {
     name: 'Type',
-    selector: (row: { type: any }) => row.type
+    selector: (row: { type: string }) => row.type
   }
 ];
 
