@@ -2,7 +2,7 @@ type TStocksModel = {
   stock_list: TStockListModel[];
 };
 
-type TStockListModel = {
+export type TStockListModel = {
   symbol: string;
   name: string;
   currency: string;
