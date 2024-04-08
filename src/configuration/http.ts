@@ -1,4 +1,4 @@
-import { API_URL } from '@/constants/env';
+import { API_URL } from '@constants/env';
 import { API_KEY } from '@constants/env';
 
 const API_HEADERS = {

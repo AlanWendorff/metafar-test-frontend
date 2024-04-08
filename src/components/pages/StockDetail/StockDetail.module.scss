@@ -4,4 +4,10 @@
   @include mixins.flex_container(column, flex-start, flex-start);
   gap: 1rem;
   width: 100%;
+  color: white;
+
+  .top {
+    @include mixins.flex_container(row, center, center);
+    gap: 1rem;
+  }
 }
