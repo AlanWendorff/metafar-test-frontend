@@ -1,0 +1,29 @@
+@use '@styles/_mixins' as mixins;
+
+.container {
+  @include mixins.flex_container(column, flex-start, flex-start);
+  gap: 1rem;
+  width: 100%;
+
+  .top {
+    @include mixins.flex_container(row, flex-start, flex-start);
+    gap: 1rem;
+
+    button {
+      height: 100%;
+      background-color: transparent;
+      border: solid 0.18rem white;
+      padding: 0.25rem 0.5rem;
+      border-radius: 1rem;
+      font-size: 0.8rem;
+      color: white;
+      font-weight: 500;
+      cursor: pointer;
+    }
+  }
+
+  .dateRangeContainer {
+    background-color: white;
+    color: black;
+  }
+}

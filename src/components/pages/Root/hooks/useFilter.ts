@@ -2,7 +2,7 @@ import { useState, ChangeEvent } from 'react';
 import { useDispatch } from 'react-redux';
 import { filterStocks } from '@/redux/stocks/states/stocks';
 import { TStockListModel } from '@/services/stocks/models/Stocks.model';
-import EFilterByValues from '@/constants/enum';
+import { EFilterByValues } from '@/constants/enum';
 import { DebouncedState, useDebouncedCallback } from 'use-debounce';
 
 interface IUseFilterReturn {
