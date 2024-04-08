@@ -30,6 +30,8 @@
       "@types/*": ["./src/types/*"],
       "@styles/*": ["./src/styles/*"],
       "@configuration/*": ["./src/configuration/*"],
+      "@services/*": ["./src/services/*"],
+      "@utils/*": ["./src/utils/*"],
     }
   },
   "include": ["src"],

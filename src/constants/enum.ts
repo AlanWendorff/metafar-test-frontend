@@ -1,6 +1,6 @@
 enum EFilterByValues {
-  'name' = 'name',
-  'symbol' = 'symbol'
+  NAME = 'name',
+  SYMBOL = 'symbol'
 }
 
 export default EFilterByValues;

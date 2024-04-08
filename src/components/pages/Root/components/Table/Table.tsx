@@ -1,5 +1,5 @@
 import { FC } from 'react';
-import { TStockListModel } from '@/services/stocks/models/Stocks.model';
+import { TStockListModel } from '@services/stocks/models/Stocks.model';
 import DataTable from 'react-data-table-component';
 import COLUMNS from './configuration/Columns';
 import styles from './Table.module.scss';

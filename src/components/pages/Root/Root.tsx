@@ -1,39 +1,50 @@
 import { ChangeEvent, FC, useEffect, useState } from 'react';
+import { useDispatch } from 'react-redux';
+import { filterStocks, setStocks } from '@/redux/stocks/states/stocks';
+import store from '@/redux/store';
 import useGetStocks from '@/services/stocks/useGetStocks';
 import Table from './components/Table';
 import Search from './components/Search';
 import EFilterByValues from '@/constants/enum';
 import styles from './Root.module.scss';
 
-import { TStockListModel } from '@/services/stocks/models/Stocks.model';
-
 const Root: FC = () => {
   const { data, isLoading } = useGetStocks();
+
+  const dispatch = useDispatch();
 
   /* 
   Move to custom hook or zustand
   */
 
-  const [filterByVal, setFilterByVal] = useState(EFilterByValues.name);
-  const [stockList, setStockList] = useState<TStockListModel[] | undefined>(undefined);
+  const [filterByVal, setFilterByVal] = useState(EFilterByValues.NAME);
 
   const handleFilterBy = (e: ChangeEvent<HTMLSelectElement>) => {
-    setFilterByVal(EFilterByValues[e.target.value as EFilterByValues]);
+    switch (e.target.value) {
+      case `${EFilterByValues.NAME}`:
+        setFilterByVal(EFilterByValues.NAME);
+        break;
+
+      case `${EFilterByValues.SYMBOL}`:
+        setFilterByVal(EFilterByValues.SYMBOL);
+        break;
+    }
   };
 
-  const filterData = (stockList: TStockListModel[], value: string) => ({
-    [EFilterByValues.name]: stockList.filter(({ name }) => name.toLowerCase().includes(value)),
-    [EFilterByValues.symbol]: stockList.filter(({ symbol }) => symbol.toUpperCase().includes(value.toUpperCase()))
-  });
-
   const handleFilter = (e: ChangeEvent<HTMLInputElement>) => {
-    const filteredStocks = data && filterData(data.stock_list, e.target.value)[filterByVal];
-    setStockList(filteredStocks);
+    dispatch(
+      filterStocks({
+        inputVal: e.target.value,
+        filterByVal
+      })
+    );
   };
 
   useEffect(() => {
-    if (!stockList) setStockList(data?.stock_list);
+    dispatch(setStocks(data?.stock_list));
   }, [data]);
+
+  console.log(store.getState().stocks.stock_list);
 
   return (
     <div className={styles.container}>
@@ -41,7 +52,7 @@ const Root: FC = () => {
 
       {data && <Search handleFilter={handleFilter} handleFilterBy={handleFilterBy} filterByVal={filterByVal} />}
 
-      <Table stocks={stockList} isLoading={isLoading} />
+      <Table stocks={store.getState().stocks.stock_list} isLoading={isLoading} />
     </div>
   );
 };

@@ -21,7 +21,9 @@ export default defineConfig(({ mode }) => {
         '@hooks': `${path.resolve(__dirname, './src/hooks/')}`,
         '@types': `${path.resolve(__dirname, './src/types/')}`,
         '@styles': `${path.resolve(__dirname, './src/styles/')}`,
-        '@configuration': `${path.resolve(__dirname, './src/configuration/')}`
+        '@configuration': `${path.resolve(__dirname, './src/configuration/')}`,
+        '@services': `${path.resolve(__dirname, './src/services/')}`,
+        '@utils': `${path.resolve(__dirname, './src/utils/')}`
       }
     }
   };
