@@ -3,11 +3,12 @@ import { useDispatch } from 'react-redux';
 import { filterStocks } from '@/redux/stocks/states/stocks';
 import { TStockListModel } from '@/services/stocks/models/Stocks.model';
 import EFilterByValues from '@/constants/enum';
+import { DebouncedState, useDebouncedCallback } from 'use-debounce';
 
 interface IUseFilterReturn {
   filterByVal: EFilterByValues;
+  handleFilterDebounced: DebouncedState<(inputVal: string) => void>;
   handleFilterBy: (e: ChangeEvent<HTMLSelectElement>) => void;
-  handleFilter: (e: ChangeEvent<HTMLInputElement>) => void;
 }
 
 interface IUseFilterProps {
@@ -30,19 +31,21 @@ const useFilter = ({ stockList }: IUseFilterProps): IUseFilterReturn => {
     }
   };
 
-  const handleFilter = (e: ChangeEvent<HTMLInputElement>) => {
+  const handleFilter = (inputVal: string) => {
     dispatch(
       filterStocks({
         stockList,
-        inputVal: e.target.value,
+        inputVal: inputVal,
         filterByVal
       })
     );
   };
 
+  const handleFilterDebounced = useDebouncedCallback(handleFilter, 1000);
+
   return {
     filterByVal,
-    handleFilter,
+    handleFilterDebounced,
     handleFilterBy
   };
 };

@@ -7,13 +7,13 @@ import styles from './Root.module.scss';
 
 const Root: FC = () => {
   const { data, isLoading } = useGetStocks();
-  const { filterByVal, handleFilter, handleFilterBy } = useFilter({ stockList: data?.stock_list });
+  const { filterByVal, handleFilterDebounced, handleFilterBy } = useFilter({ stockList: data?.stock_list });
 
   return (
     <div className={styles.container}>
       <h1>Stock List</h1>
 
-      {data && <Search handleFilter={handleFilter} handleFilterBy={handleFilterBy} filterByVal={filterByVal} />}
+      {data && <Search handleFilter={handleFilterDebounced} handleFilterBy={handleFilterBy} filterByVal={filterByVal} />}
 
       <Table isLoading={isLoading} />
     </div>

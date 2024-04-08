@@ -1,16 +1,25 @@
 import { ChangeEvent, FC } from 'react';
 import styles from './Search.module.scss';
 import EFilterByValues from '@/constants/enum';
+import { DebouncedState } from 'use-debounce';
 
 interface ISearchProps {
-  handleFilter: (e: ChangeEvent<HTMLInputElement>) => void;
+  handleFilter: DebouncedState<(inputVal: string) => void>;
   handleFilterBy: (e: ChangeEvent<HTMLSelectElement>) => void;
   filterByVal: EFilterByValues;
 }
 
 const Search: FC<ISearchProps> = ({ handleFilter, handleFilterBy, filterByVal }) => (
   <div className={styles.container}>
-    <input className={styles.input} id='filter' type='text' onChange={handleFilter} placeholder={`Filter by ${filterByVal}`} />
+    <input
+      className={styles.input}
+      id='filter'
+      type='text'
+      onChange={(e) => {
+        handleFilter(e.target.value);
+      }}
+      placeholder={`Filter by ${filterByVal}`}
+    />
 
     <select className={styles.select} defaultValue={filterByVal} onChange={handleFilterBy}>
       <option id={EFilterByValues.NAME} value={EFilterByValues.NAME}>
