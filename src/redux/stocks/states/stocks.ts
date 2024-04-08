@@ -22,8 +22,9 @@ export const stocksSlice = createSlice({
       state.stock_list = action.payload;
     },
     filterStocks: (state, action) => {
-      const { inputVal, filterByVal }: TFilterPayload = action.payload;
-      const filteredStocks = filterDataBy(state.stock_list, inputVal)[filterByVal];
+      const { stockList, inputVal, filterByVal }: TFilterPayload = action.payload;
+
+      const filteredStocks = filterDataBy(stockList, inputVal)[filterByVal];
       state.stock_list = filteredStocks;
     }
   }

@@ -10,7 +10,7 @@ interface ISearchProps {
 
 const Search: FC<ISearchProps> = ({ handleFilter, handleFilterBy, filterByVal }) => (
   <div className={styles.container}>
-    <input className={styles.input} id='filter' type='text' onChange={handleFilter} placeholder='Filter by' />
+    <input className={styles.input} id='filter' type='text' onChange={handleFilter} placeholder={`Filter by ${filterByVal}`} />
 
     <select className={styles.select} defaultValue={filterByVal} onChange={handleFilterBy}>
       <option id={EFilterByValues.NAME} value={EFilterByValues.NAME}>
