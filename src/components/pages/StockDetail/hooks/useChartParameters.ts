@@ -2,16 +2,16 @@ import { useState, ChangeEvent } from 'react';
 import { EUpdateInterval } from '@/constants/enum';
 import TDateRange, { TDate } from '@/types/DateRange.type';
 
-interface IUseParametersReturn {
+interface IUseChartParametersReturn {
   updateInterval: EUpdateInterval;
   dateRange: TDateRange;
   handleUpdateInterval: (e: ChangeEvent<HTMLSelectElement>) => void;
   handleSetDataRange: (dates: TDate) => void;
 }
 
-interface IUseParametersProps {}
+interface IUseChartParametersProps {}
 
-const useParameters = (): IUseParametersReturn => {
+const useChartParameters = (): IUseChartParametersReturn => {
   const [updateInterval, setUpdateInterval] = useState(EUpdateInterval.ONE);
   const [dateRange, setDateRange] = useState<TDateRange>([new Date(), new Date()]);
 
@@ -43,4 +43,4 @@ const useParameters = (): IUseParametersReturn => {
   };
 };
 
-export default useParameters;
+export default useChartParameters;
