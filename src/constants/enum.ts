@@ -4,7 +4,7 @@ export enum EFilterByValues {
 }
 
 export enum EUpdateInterval {
-  ONE = 1000,
-  FIVE = 5000,
-  FIFTEEN = 15_000
+  ONE = 1,
+  FIVE = 5,
+  FIFTEEN = 15
 }

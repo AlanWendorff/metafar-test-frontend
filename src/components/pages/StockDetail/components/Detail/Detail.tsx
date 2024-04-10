@@ -1,6 +1,12 @@
-import { FC } from 'react';
+import { ComponentProps, FC } from 'react';
 import styles from './Detail.module.scss';
 
-const Detail: FC = () => <p className={styles.container}>TSLA - Tesla Inc - USD</p>;
+interface IDetailProps extends ComponentProps<'p'> {}
+
+const Detail: FC<IDetailProps> = ({ children, ...rest }) => (
+  <p className={styles.container} {...rest}>
+    {children}
+  </p>
+);
 
 export default Detail;

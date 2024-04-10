@@ -8,7 +8,7 @@ const COLUMNS: TableColumn<TStockListModel>[] = [
   {
     name: 'Symbol',
     selector: (row: { symbol: string }) => row.symbol,
-    cell: (row) => <Link to={generatePath(STOCK_DETAIL, { symbol: row.symbol })}>{row.symbol}</Link>
+    cell: (row) => <Link to={generatePath(STOCK_DETAIL, { symbol: row.symbol, name: row.name })}>{row.symbol}</Link>
   },
   {
     name: 'Name',
