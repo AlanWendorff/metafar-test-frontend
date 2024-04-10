@@ -17,22 +17,12 @@ const StockDetail: FC = () => {
   const { data, isLoading, error } = useGetStockDetail({ symbol: String(symbol), updateInterval: String(updateInterval) });
 
   const options = {
-    /*  chart: {
-      type: 'columnrange'
-    }, */
     title: {
       text: `${symbol} - ${data?.detail.currency}`
     },
     yAxis: {
       title: {
         text: `price ${data?.detail.currency}`
-      }
-    },
-
-    xAxis: {
-      type: 'datetime',
-      title: {
-        text: 'Time'
       }
     },
 
