@@ -24,9 +24,11 @@ const useGetStockDetail = ({ symbol, updateInterval }: IUseGetStockDetailProps):
   const {
     data: dataRaw,
     error: errorToFetch,
-    isLoading
+    isLoading,
+    isValidating
   } = useSWR<IStockDetailDTO>(`/time_series?symbol=${symbol}&interval=${updateInterval}min`, http.get, {
-    refreshInterval: minutesToMiliSeconds(updateInterval)
+    refreshInterval: minutesToMiliSeconds(updateInterval),
+    revalidateOnFocus: false
   });
 
   useEffect(() => {
@@ -34,10 +36,9 @@ const useGetStockDetail = ({ symbol, updateInterval }: IUseGetStockDetailProps):
     errorToFetch && setError(String(errorToFetch));
 
     if (dataRaw && !error && !dataRaw?.message) {
-      console.log('asign!');
       setData(stockDetailAdapter(dataRaw));
     }
-  }, [errorToFetch, dataRaw]);
+  }, [errorToFetch, dataRaw, isValidating]);
 
   return { data, isLoading, error };
 };
