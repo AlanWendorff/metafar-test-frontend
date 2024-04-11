@@ -25,7 +25,7 @@ const RealTimeTable: FC<IRealTimeTableProps> = ({ updateInterval, handleSetDetai
 
   return (
     <>
-      {error && <h1>{error}</h1>}
+      {error && <h1>{String(error)}</h1>}
       {data && (
         <HighchartsReact highcharts={Highcharts} options={tableOptions(String(symbol), String(data?.detail.currency), data?.prices)} />
       )}

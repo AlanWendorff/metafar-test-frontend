@@ -19,25 +19,21 @@ interface IUseGetStockDetailHistoricProps {
 }
 
 const useGetStockDetailHistoric = ({ symbol, dateRange }: IUseGetStockDetailHistoricProps): IUseGetStockDetailHistoric => {
-  const [error, setError] = useState<any>(null);
-  const [data, setData] = useState<TStockDetailModel | undefined>(undefined);
-
   const apiEndpoint = dateRange
     ? `/time_series?symbol=${symbol}&interval=5min&start_date=${isoDateWithoutTimeZone(dateRange[0])}&end_date=${isoDateWithoutTimeZone(
         dateRange[1]
       )}`
     : `/time_series?symbol=${symbol}&interval=5min&date=today`;
 
-  const { data: dataRaw, error: errorToFetch, isLoading, isValidating } = useSWR<IStockDetailDTO>(apiEndpoint, http.get);
+  const { data: dataRaw, error, isLoading, isValidating } = useSWR<IStockDetailDTO>(apiEndpoint, http.get);
+
+  const [data, setData] = useState<TStockDetailModel | undefined>(undefined);
 
   useEffect(() => {
-    setError(dataRaw?.message ? dataRaw?.message : null);
-    setError(errorToFetch ? String(errorToFetch) : null);
-
-    if (dataRaw && !error && !dataRaw?.message) {
+    if (dataRaw && !error) {
       setData(stockDetailAdapter(dataRaw));
     }
-  }, [errorToFetch, dataRaw, isValidating, dateRange]);
+  }, [dataRaw, isValidating, dateRange]);
 
   return { data, isLoading, error };
 };

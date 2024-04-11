@@ -25,7 +25,7 @@ const HistoricTimeTable: FC<IHistoricTimeTableProps> = ({ dateRange, handleSetDe
 
   return (
     <>
-      {error && <h1>{error}</h1>}
+      {error && <h1>{String(error)}</h1>}
       {data && (
         <HighchartsReact
           highcharts={Highcharts}

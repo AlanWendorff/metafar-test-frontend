@@ -8,7 +8,13 @@ const API_HEADERS = {
 const http = {
   get: async (input: RequestInfo, init?: RequestInit) => {
     const response = await fetch(`${API_URL}${input}`, { ...init, method: 'GET', headers: API_HEADERS });
-    return response.json();
+    const data = await response.json();
+
+    if (data.status === 'error') {
+      throw new Error(data.message);
+    }
+
+    return data;
   },
   post: async (input: RequestInfo, body: Record<string, any>, init?: RequestInit) => {
     const response = await fetch(`${API_URL}${input}`, {
@@ -17,7 +23,13 @@ const http = {
       headers: API_HEADERS,
       body: JSON.stringify(body)
     });
-    return await response.json();
+    const data = await response.json();
+
+    if (data.status === 'error') {
+      throw new Error(data.message);
+    }
+
+    return data;
   },
   put: async (input: RequestInfo, body: Record<string, any>, init?: RequestInit) => {
     const response = await fetch(`${API_URL}${input}`, {
@@ -26,11 +38,23 @@ const http = {
       headers: API_HEADERS,
       body: JSON.stringify(body)
     });
-    return await response.json();
+    const data = await response.json();
+
+    if (data.status === 'error') {
+      throw new Error(data.message);
+    }
+
+    return data;
   },
   delete: async (input: RequestInfo, init?: RequestInit) => {
     const response = await fetch(`${API_URL}${input}`, { ...init, method: 'DELETE', headers: API_HEADERS });
-    return await response.json();
+    const data = await response.json();
+
+    if (data.status === 'error') {
+      throw new Error(data.message);
+    }
+
+    return data;
   }
 };
 

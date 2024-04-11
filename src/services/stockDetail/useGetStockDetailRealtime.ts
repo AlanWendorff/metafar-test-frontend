@@ -18,12 +18,9 @@ interface IUseGetStockDetailRealtimeProps {
 }
 
 const useGetStockDetailRealtime = ({ symbol, updateInterval }: IUseGetStockDetailRealtimeProps): IUseGetStockDetailRealtime => {
-  const [error, setError] = useState<any>(null);
-  const [data, setData] = useState<TStockDetailModel | undefined>(undefined);
-
   const {
     data: dataRaw,
-    error: errorToFetch,
+    error,
     isLoading,
     isValidating
   } = useSWR<IStockDetailDTO>(`/time_series?symbol=${symbol}&interval=${updateInterval}min`, http.get, {
@@ -31,14 +28,13 @@ const useGetStockDetailRealtime = ({ symbol, updateInterval }: IUseGetStockDetai
     revalidateOnFocus: false
   });
 
-  useEffect(() => {
-    setError(dataRaw?.message ? dataRaw?.message : null);
-    setError(errorToFetch ? String(errorToFetch) : null);
+  const [data, setData] = useState<TStockDetailModel | undefined>(undefined);
 
-    if (dataRaw && !error && !dataRaw?.message) {
+  useEffect(() => {
+    if (dataRaw && !error) {
       setData(stockDetailAdapter(dataRaw));
     }
-  }, [errorToFetch, dataRaw, isValidating]);
+  }, [dataRaw, isValidating]);
 
   return { data, isLoading, error };
 };

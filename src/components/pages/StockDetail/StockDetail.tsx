@@ -28,14 +28,16 @@ const StockDetail: FC = () => {
         </Detail>
       )}
 
-      <Controls
-        updateInterval={updateInterval}
-        dateRange={dateRange}
-        controlState={controlState}
-        handleSetDataRange={handleSetDataRange}
-        handleUpdateInterval={handleUpdateInterval}
-        handleSetControlState={handleSetControlState}
-      />
+      {detail && (
+        <Controls
+          updateInterval={updateInterval}
+          dateRange={dateRange}
+          controlState={controlState}
+          handleSetDataRange={handleSetDataRange}
+          handleUpdateInterval={handleUpdateInterval}
+          handleSetControlState={handleSetControlState}
+        />
+      )}
 
       {controlState.realtime && <RealTimeTable updateInterval={updateInterval} handleSetDetail={handleSetDetail} />}
       {controlState.historic && <HistoricTimeTable dateRange={dateRange} handleSetDetail={handleSetDetail} />}
