@@ -1,6 +1,6 @@
 import { ChangeEvent, FC } from 'react';
 import styles from './Search.module.scss';
-import EFilterByValues from '@/constants/enum';
+import { EFilterByValues } from '@/constants/enum';
 import { DebouncedState } from 'use-debounce';
 
 interface ISearchProps {
