@@ -1,11 +1,17 @@
 const tableOptions = (text: string, currency: string, prices: number[] | undefined) => ({
+  chart: {
+    type: 'line'
+  },
   title: {
-    text: text
+    text
   },
   yAxis: {
     title: {
       text: currency
     }
+  },
+  legend: {
+    enabled: false
   },
   series: [
     {
