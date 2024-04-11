@@ -1,23 +1,23 @@
 import { useEffect, useState } from 'react';
-import http from '@configuration/http';
 import useSWR from 'swr';
+import http from '@configuration/http';
 import IStockDetailDTO from './dto/StocksDetail.dto';
 import TStockDetailModel from './models/StocksDetail.model';
 import stockDetailAdapter from './adapters/StocksDetail.adapter';
-import minutesToMiliSeconds from '@/utils/minutesToMiliSeconds';
+import minutesToMiliSeconds from '@utils/minutesToMiliSeconds';
 
-interface IUseGetStockDetail {
+interface IUseGetStockDetailRealtime {
   data: TStockDetailModel | undefined;
   isLoading: boolean;
   error: any;
 }
 
-interface IUseGetStockDetailProps {
+interface IUseGetStockDetailRealtimeProps {
   symbol: string;
   updateInterval: string;
 }
 
-const useGetStockDetail = ({ symbol, updateInterval }: IUseGetStockDetailProps): IUseGetStockDetail => {
+const useGetStockDetailRealtime = ({ symbol, updateInterval }: IUseGetStockDetailRealtimeProps): IUseGetStockDetailRealtime => {
   const [error, setError] = useState<any>(null);
   const [data, setData] = useState<TStockDetailModel | undefined>(undefined);
 
@@ -32,8 +32,8 @@ const useGetStockDetail = ({ symbol, updateInterval }: IUseGetStockDetailProps):
   });
 
   useEffect(() => {
-    dataRaw?.message && setError(dataRaw?.message);
-    errorToFetch && setError(String(errorToFetch));
+    setError(dataRaw?.message ? dataRaw?.message : null);
+    setError(errorToFetch ? String(errorToFetch) : null);
 
     if (dataRaw && !error && !dataRaw?.message) {
       setData(stockDetailAdapter(dataRaw));
@@ -43,4 +43,4 @@ const useGetStockDetail = ({ symbol, updateInterval }: IUseGetStockDetailProps):
   return { data, isLoading, error };
 };
 
-export default useGetStockDetail;
+export default useGetStockDetailRealtime;

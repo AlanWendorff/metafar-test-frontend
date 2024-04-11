@@ -8,3 +8,8 @@ export enum EUpdateInterval {
   FIVE = 5,
   FIFTEEN = 15
 }
+
+export enum EChartControl {
+  REALTIME = 'realtime',
+  HISTORIC = 'historic'
+}

@@ -1,39 +1,20 @@
 import { FC } from 'react';
 import { useParams } from 'react-router';
 import { ROOT } from '@/constants/routes';
-import Highcharts from 'highcharts';
-import HighchartsReact from 'highcharts-react-official';
-import LinkTo from '@/components/elements/LinkTo';
-import useGetStockDetail from '@/services/stockDetail/useGetStockDetail';
 import Detail from './components/Detail';
 import Controls from './components/Controls';
+import LinkTo from '@/components/elements/LinkTo';
+import RealTimeTable from './components/RealTimeTable';
+import HistoricTimeTable from './components/HistoricTimeTable';
+import useStockDetail from './hooks/useStockDetail';
 import useChartParameters from './hooks/useChartParameters';
-
 import styles from './StockDetail.module.scss';
 
 const StockDetail: FC = () => {
-  const { name, symbol } = useParams();
-  const { dateRange, updateInterval, handleSetDataRange, handleUpdateInterval } = useChartParameters();
-  const { data, isLoading, error } = useGetStockDetail({ symbol: String(symbol), updateInterval: String(updateInterval) });
+  const { name } = useParams();
+  const { dateRange, updateInterval, controlState, handleSetDataRange, handleUpdateInterval, handleSetControlState } = useChartParameters();
 
-  const options = {
-    title: {
-      text: `${symbol} - ${data?.detail.currency}`
-    },
-    yAxis: {
-      title: {
-        text: `price ${data?.detail.currency}`
-      }
-    },
-
-    series: [
-      {
-        data: data?.onlyPrice
-      }
-    ]
-  };
-
-  console.log(data, isLoading);
+  const { detail, handleSetDetail } = useStockDetail();
 
   return (
     <div className={styles.container}>
@@ -41,24 +22,23 @@ const StockDetail: FC = () => {
         <LinkTo to={ROOT}>Go Back</LinkTo>|<h1>Stock Detail</h1>
       </div>
 
-      {error && <h1>{error}</h1>}
-
-      {data && (
+      {detail && (
         <Detail>
-          {data.detail.symbol} - {name} | {data.detail.type} - {data.detail.currency}
+          {detail.symbol} - {name} | {detail.type} - {detail.currency}
         </Detail>
       )}
 
-      {data && (
-        <Controls
-          updateInterval={updateInterval}
-          dateRange={dateRange}
-          handleSetDataRange={handleSetDataRange}
-          handleUpdateInterval={handleUpdateInterval}
-        />
-      )}
+      <Controls
+        updateInterval={updateInterval}
+        dateRange={dateRange}
+        controlState={controlState}
+        handleSetDataRange={handleSetDataRange}
+        handleUpdateInterval={handleUpdateInterval}
+        handleSetControlState={handleSetControlState}
+      />
 
-      {data && <HighchartsReact highcharts={Highcharts} options={options} />}
+      {controlState.realtime && <RealTimeTable updateInterval={updateInterval} handleSetDetail={handleSetDetail} />}
+      {controlState.historic && <HistoricTimeTable dateRange={dateRange} handleSetDetail={handleSetDetail} />}
     </div>
   );
 };
