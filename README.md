@@ -27,4 +27,9 @@ pnpm dev
 bun dev
 ```
 
+<b>Variables de enorno necesarias para el proyecto:</b>
+
+`API_URL={twelvedata-api-url}`<br/>
+`API_KEY={twelvedata-api-key}`<br/>
+
 Abra http://localhost:5173 con su navegador para ver el resultado.
