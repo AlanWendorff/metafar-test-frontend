@@ -1,5 +1,5 @@
 import { FC } from 'react';
-import useGetStocks from '@/services/stocks/useGetStocks';
+import useGetStocks from '@services/stocks/useGetStocks';
 import useFilter from './hooks/useFilter';
 import Table from './components/Table';
 import Search from './components/Search';

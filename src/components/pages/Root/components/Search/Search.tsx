@@ -1,12 +1,12 @@
 import { ChangeEvent, FC } from 'react';
-import styles from './Search.module.scss';
-import { EFilterByValues } from '@/constants/enum';
+import { EFilterByValues } from '@constants/enum';
 import { DebouncedState } from 'use-debounce';
+import styles from './Search.module.scss';
 
 interface ISearchProps {
+  filterByVal: EFilterByValues;
   handleFilter: DebouncedState<(inputVal: string) => void>;
   handleFilterBy: (e: ChangeEvent<HTMLSelectElement>) => void;
-  filterByVal: EFilterByValues;
 }
 
 const Search: FC<ISearchProps> = ({ handleFilter, handleFilterBy, filterByVal }) => (

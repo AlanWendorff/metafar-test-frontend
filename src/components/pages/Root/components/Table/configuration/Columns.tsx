@@ -1,6 +1,6 @@
-import { STOCK_DETAIL } from '@/constants/routes';
-import { TStockListModel } from '@/services/stocks/models/Stocks.model';
+import { TStockListModel } from '@services/stocks/models/Stocks.model';
 import { TableColumn } from 'react-data-table-component';
+import { STOCK_DETAIL } from '@constants/routes';
 import { generatePath } from 'react-router';
 import { Link } from 'react-router-dom';
 

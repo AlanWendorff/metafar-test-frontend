@@ -1,7 +1,7 @@
 import { FC, useEffect } from 'react';
 import { useParams } from 'react-router';
-import { EUpdateInterval } from '@/constants/enum';
-import { TDetailModel } from '@/services/stockDetail/models/StocksDetail.model';
+import { EUpdateInterval } from '@constants/enum';
+import { TDetailModel } from '@services/stockDetail/models/StocksDetail.model';
 import Highcharts from 'highcharts';
 import HighchartsReact from 'highcharts-react-official';
 import tableOptions from '../../configuration/TableOptions';

@@ -1,4 +1,4 @@
-import { TDetailModel } from '@/services/stockDetail/models/StocksDetail.model';
+import { TDetailModel } from '@services/stockDetail/models/StocksDetail.model';
 import { useState } from 'react';
 
 interface IUseStockDetailReturn {
