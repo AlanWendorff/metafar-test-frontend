@@ -4,8 +4,10 @@ import { EUpdateInterval } from '@constants/enum';
 import { TDetailModel } from '@services/stockDetail/models/StocksDetail.model';
 import Highcharts from 'highcharts';
 import HighchartsReact from 'highcharts-react-official';
+import Loader from '@/components/elements/Loader';
 import tableOptions from '../../configuration/TableOptions';
 import useGetStockDetailRealtime from '@services/stockDetail/useGetStockDetailRealtime';
+import styles from './RealTimeTable.module.scss';
 
 interface IRealTimeTableProps {
   updateInterval: EUpdateInterval;
@@ -14,7 +16,7 @@ interface IRealTimeTableProps {
 
 const RealTimeTable: FC<IRealTimeTableProps> = ({ updateInterval, handleSetDetail }) => {
   const { symbol } = useParams();
-  const { data, error } = useGetStockDetailRealtime({
+  const { data, error, isLoading } = useGetStockDetailRealtime({
     symbol: String(symbol),
     updateInterval: String(updateInterval)
   });
@@ -25,9 +27,14 @@ const RealTimeTable: FC<IRealTimeTableProps> = ({ updateInterval, handleSetDetai
 
   return (
     <>
+      <Loader active={isLoading} />
       {error && <h1>{String(error)}</h1>}
       {data && (
-        <HighchartsReact highcharts={Highcharts} options={tableOptions(String(symbol), String(data?.detail.currency), data?.prices)} />
+        <HighchartsReact
+          highcharts={Highcharts}
+          options={tableOptions(String(symbol), String(data?.detail.currency), data?.prices)}
+          containerProps={{ className: styles.container }}
+        />
       )}
     </>
   );

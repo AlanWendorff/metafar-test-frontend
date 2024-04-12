@@ -3,9 +3,11 @@ import { useParams } from 'react-router';
 import { TDetailModel } from '@services/stockDetail/models/StocksDetail.model';
 import Highcharts from 'highcharts';
 import HighchartsReact from 'highcharts-react-official';
+import Loader from '@/components/elements/Loader';
 import tableOptions from '../../configuration/TableOptions';
 import useGetStockDetailHistoric from '@services/stockDetail/useGetStockDetailHistoric';
 import TDateRange from '@/types/DateRange.type';
+import styles from './HistoricTimeTable.module.scss';
 
 interface IHistoricTimeTableProps {
   dateRange: TDateRange | undefined;
@@ -14,7 +16,7 @@ interface IHistoricTimeTableProps {
 
 const HistoricTimeTable: FC<IHistoricTimeTableProps> = ({ dateRange, handleSetDetail }) => {
   const { symbol } = useParams();
-  const { data, error } = useGetStockDetailHistoric({
+  const { data, isLoading, error } = useGetStockDetailHistoric({
     symbol: String(symbol),
     dateRange
   });
@@ -25,6 +27,7 @@ const HistoricTimeTable: FC<IHistoricTimeTableProps> = ({ dateRange, handleSetDe
 
   return (
     <>
+      <Loader active={isLoading} />
       {error && <h1>{String(error)}</h1>}
       {data && (
         <HighchartsReact
@@ -34,6 +37,7 @@ const HistoricTimeTable: FC<IHistoricTimeTableProps> = ({ dateRange, handleSetDe
             String(data?.detail.currency),
             data?.prices
           )}
+          containerProps={{ className: styles.container }}
         />
       )}
     </>
