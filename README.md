@@ -49,4 +49,4 @@ Se utilizó:
   <li>useDebounce: https://www.npmjs.com/package/use-debounce</li>
 </ul>
 
----
+También se intentó seguir la metodología gitflow en el mismo repositorio.
