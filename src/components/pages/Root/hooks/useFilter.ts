@@ -1,8 +1,8 @@
 import { useState, ChangeEvent } from 'react';
 import { useDispatch } from 'react-redux';
 import { filterStocks } from '@/redux/stocks/states/stocks';
-import { TStockListModel } from '@/services/stocks/models/Stocks.model';
-import { EFilterByValues } from '@/constants/enum';
+import { TStockListModel } from '@services/stocks/models/Stocks.model';
+import { EFilterByValues } from '@constants/enum';
 import { DebouncedState, useDebouncedCallback } from 'use-debounce';
 
 interface IUseFilterReturn {
@@ -35,7 +35,7 @@ const useFilter = ({ stockList }: IUseFilterProps): IUseFilterReturn => {
     dispatch(
       filterStocks({
         stockList,
-        inputVal: inputVal,
+        inputVal,
         filterByVal
       })
     );

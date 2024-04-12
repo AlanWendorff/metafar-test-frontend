@@ -1,9 +1,9 @@
 import { ChangeEvent, FC } from 'react';
-import { EChartControl, EUpdateInterval } from '@/constants/enum';
-import styles from './Controls.module.scss';
-import DateRangePicker from '@wojtekmaj/react-daterange-picker';
+import { EChartControl, EUpdateInterval } from '@constants/enum';
 import TDateRange, { TDate } from '@/types/DateRange.type';
+import DateRangePicker from '@wojtekmaj/react-daterange-picker';
 import TChartControl from '@/types/ChartControl.type';
+import styles from './Controls.module.scss';
 
 interface IControlsProps {
   updateInterval: EUpdateInterval;

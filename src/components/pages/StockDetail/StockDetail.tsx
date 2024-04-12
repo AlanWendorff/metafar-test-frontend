@@ -1,6 +1,6 @@
 import { FC } from 'react';
 import { useParams } from 'react-router';
-import { ROOT } from '@/constants/routes';
+import { ROOT } from '@constants/routes';
 import Detail from './components/Detail';
 import Controls from './components/Controls';
 import LinkTo from '@/components/elements/LinkTo';
@@ -12,9 +12,8 @@ import styles from './StockDetail.module.scss';
 
 const StockDetail: FC = () => {
   const { name } = useParams();
-  const { dateRange, updateInterval, controlState, handleSetDataRange, handleUpdateInterval, handleSetControlState } = useChartParameters();
-
   const { detail, handleSetDetail } = useStockDetail();
+  const { dateRange, updateInterval, controlState, handleSetDataRange, handleUpdateInterval, handleSetControlState } = useChartParameters();
 
   return (
     <div className={styles.container}>

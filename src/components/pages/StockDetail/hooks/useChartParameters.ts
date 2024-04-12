@@ -36,9 +36,7 @@ const useChartParameters = (): IUseChartParametersReturn => {
     }
   };
 
-  const handleSetDataRange = (dates: TDateRange) => {
-    setDateRange(dates);
-  };
+  const handleSetDataRange = (dates: TDateRange) => setDateRange(dates);
 
   const handleSetControlState = (active: EChartControl) => {
     switch (active) {

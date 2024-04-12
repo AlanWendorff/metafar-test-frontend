@@ -17,7 +17,8 @@ const tableOptions = (text: string, currency: string, prices: number[] | undefin
     {
       data: prices
     }
-  ]
+  ],
+  style: { width: '100%' }
 });
 
 export default tableOptions;
