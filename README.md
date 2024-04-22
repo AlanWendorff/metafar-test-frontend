@@ -50,3 +50,4 @@ Se utilizó:
 </ul>
 
 También se intentó seguir la metodología gitflow en el mismo repositorio.
+![gitflow](https://github.com/AlanWendorff/metafar-test-frontend/assets/62715512/d04f5d94-70d8-4c36-91e9-1aeae27694d5)
